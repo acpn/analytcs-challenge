@@ -11,12 +11,21 @@
 
 * Além das credencias descritas acima é necessário que a conta cadastrada tenha pelo menos uma propriedade e uma view.
 
-## Como executar a instalação
+## Instalação
 
 * No diretório raíz do projeto executar:
     - docker-compose up --build
     - Após o término da execução abra o navegador de sua preferência e digite o endereço:
         - http://localhost:8000/
+
+## Funções do sistema
+
+* Há quatro funções principais no sistema:
+    - Cadastro de usuários
+    - Login (página inicial)
+    - Página Home com dados de Contas/Propriedades e Vistas
+    - Consulta ao Analytis que retornará os dados de Contas/Propriedades e Vistas e salvará na base de dados.
+    - Página de logs
 
 ## Tecnologias utilizadas
 
