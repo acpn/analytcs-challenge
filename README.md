@@ -9,6 +9,15 @@
 * Credenciais do Google para utilizar API do Analytics, siga com atenção os passos descritos no tutorial abaixo.
     - https://developers.google.com/analytics/devguides/reporting/core/v4/quickstart/service-py
 
+* Além das credencias descritas acima é necessário que a conta cadastrada tenha pelo menos uma propriedade e uma view.
+
+## Como executar a instalação
+
+* No diretório raíz do projeto executar:
+    - docker-compose up --build
+    - Após o término da execução abra o navegador de sua preferência e digite o endereço:
+        - http://localhost:8000/
+
 ## Tecnologias utilizadas
 
 * Todo o desenvolvimento doi realizado utilizando python.
