@@ -35,8 +35,12 @@
 
 * Todo o desenvolvimento doi realizado utilizando python.
     - https://www.python.org/
+
 * Para o frontend foi utilizado o framework Django
     - https://www.djangoproject.com/
+
+* A base de dados utilizada foi o Postgres
+    - https://www.postgresql.org/
 
 * Para os componentes de UI foi utilizado bootstrap CDN
     - https://www.bootstrapcdn.com/
