@@ -6,6 +6,9 @@
     - Windows: https://docs.docker.com/docker-for-windows/install/
     - Ubuntu: https://docs.docker.com/engine/install/ubuntu/ 
 
+* Credenciais do Google para utilizar API do Analytics, siga com atenção os passos descritos no tutorial abaixo.
+    - https://developers.google.com/analytics/devguides/reporting/core/v4/quickstart/service-py
+
 ## Tecnologias utilizadas
 
 * Todo o desenvolvimento doi realizado utilizando python.
@@ -26,6 +29,3 @@
 
 * Para o desenvolvimento da API foi utilizada a biblioteca google-api-python-client do Google Analytics
     - https://developers.google.com/analytics/devguides/reporting/core/v4/quickstart/service-py
-
-
-
