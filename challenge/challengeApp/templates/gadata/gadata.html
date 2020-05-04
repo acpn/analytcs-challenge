@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Analytics data {% endblock %}
+
+{% block body %}
+<div class="container">  
+  {% csrf_token %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">      
+      <a class="navbar-brand" style="color:blue;" href="#">Home</a>
+      <a class="navbar-brand" style="color:blue;" href="{% url 'log' %}">Logs</a>
+      <a class="navbar-brand" style="color:blue;" href="{% url 'logout' %}">Logout</a>
+    </nav>
+</div>
+<div  class="container">
+  <form action="" id="form-results"> 
+    <div class="container">
+      {% if messages %}                                    
+          {% for msg in messages %}
+           <div class="alert alert-{% if msg.tags == 'error' %}danger{% else %}{{ msg.tags }}{% endif %}" role="alert">
+            <p name="user"> Olá <mark>{{ user }} </mark>, {{ msg.message }} </p>
+          </div>   
+          {% endfor %} 
+        {% else %}
+        <p class="text-xl-left" style="margin-top: 20px;"> Olá <mark>{{ user|title}}</mark>, esses são seus dados do Google Analytics.
+          Lembrando que esses dados são da última consulta que você realizou, ok?
+          Se houver necessidade clique na opção <mark>Consultar Analytics</mark> para atualizar as informações.
+        </p>
+      {% endif %} 
+    </div> 
+    <div class="table-responsive" id="dataaccount">
+      {% if accounts %}
+      <table class="table table-sm"> 
+        <thead class="thead-light">
+          <caption style="caption-side: top;">Lista de Contas</caption>
+          <tr>
+            <th scope="col">ID Conta</th>
+            <th scope="col">Usuário</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Permissões</th>
+          </tr>
+        </thead>
+        <tbody>
+             {% for value in accounts %}
+             <tr>
+               <td > {{ value.accountid }} </td>
+               <td > {{ value.owner}} </td>
+               <td > {{ value.name}} </td>
+               <td> {{ value.permissions|slice:"15:"|slice:":-2"|cut:"'" }} </td>
+            </tr>
+            {% endfor %}
+        </tbody>  
+      </table>    
+      {% endif %}                          
+    </div>
+    <div class="table-responsive"  id="dataprops">
+      {% if properties %}
+      <table class="table table-sm"> 
+        <thead class="thead-light">
+          <caption style="caption-side: top;">Lista de Propriedades</caption>
+          <tr>
+            <th scope="col">ID da Propriedade</th>
+            <th scope="col">Nome</th>
+            <th scope="col">ID Conta</th>
+            <th scope="col">Nível</th>
+            <th scope="col">Url observada</th>
+            <th scope="col">Setor</th>
+          </tr>
+        </thead>
+        <tbody>   
+          {% for value in properties %}
+          <tr>
+          <td > {{ value.id }} </td>
+          <td > {{ value.name }} </td>
+          <td > {{ value.propid|slice:"3:"|slice:":-2" }} </td>
+          <td > {{ value.level }} </td>      
+          <td > {{ value.site }} </td>
+          <td > {{ value.industry }} </td>   
+        </tr>
+          {% endfor %}              
+        </tbody>  
+      </table>    
+      {% endif %}                          
+    </div>
+    <div class="table-responsive" id="dataviews">
+      {% if views %}
+      <table class="table table-sm"> 
+        <thead class="thead-light">
+          <caption style="caption-side: top;">Lista de Vistas</caption>
+          <tr>
+            <th scope="col">ID da Propriedade</th>
+            <th scope="col">ID da view</th>
+            <th scope="col">Nome da View</th>
+            <th scope="col">Data criação</th>
+            <th scope="col">Última atualização</th>
+            <th scope="col">Moeda</th>
+            <th scope="col">Fuso horário</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for value in views %}  
+          <tr>
+              <td> {{ value.propid_id }} </td>
+              <td> {{ value.viewid }} </td>
+              <td> {{ value.viewname }} </td>
+              <td> {{ value.created }} </td>
+              <td> {{ value.updated }} </td>      
+              <td> {{ value.currency }} </td>
+              <td> {{ value.timezone }} </td>                 
+         </tr> 
+         {% endfor %}
+        </tbody>  
+      </table>    
+      {% endif %}                          
+    </div>
+
+      <div id="loading">
+        <img src="{% static 'loading.gif' %}" alt="" name="loading">
+     </div> 
+    </form>
+      <form action="{% url 'gadata' %}" method="post" id="analytics-form"> 
+        {% csrf_token %}
+          <div class="form-group"> 
+            <input type="submit" class="btn btn-success" value="Consultar Analytics" id="btnSubmit" onclick="controlScreen();"/>         
+          </div>
+    </form>      
+   
+</div>
+
+<!-- jQuery function to avoid conflicts between POST and 
+      onclick event from the submit button
+-->
+<script>
+  $(function() {
+  $('#analytics-form').submit(function(){
+    $("input[type='submit']", this)
+      .val("Consultando API...")
+      .attr('disabled', 'disabled');
+    return true;
+  });
+});
+</script>
+
+<!-- Javascript to show and hide tables and spinner -->
+<script>
+  function controlScreen() {
+    var tableaccounts = document.getElementById("dataaccount");
+    var tableprops = document.getElementById("dataprops");
+    var tableviews = document.getElementById("dataviews");
+    var loading = document.getElementById("loading");
+    var btnsubmit = document.getElementById("btnSubmit")
+    if (tableaccounts.style.display === "none") {
+      loading.style.display = "none";  
+      tableaccounts.style.display = "block";
+      tableprops.style.display = "block";
+      tableviews.style.display = "block";
+    } else {
+      loading.style.display = "block";  
+      tableaccounts.style.display = "none";
+      tableprops.style.display = "none";
+      tableviews.style.display = "none";
+
+    }
+  }
+</script>
+
+<!-- Start the loading spinner hidden -->
+<style>
+  #loading {
+     display: none;
+  }
+</style>
+
+{% endblock %}

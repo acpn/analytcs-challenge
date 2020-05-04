@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static %}
+    
+{% block title %} Logs {% endblock %}
+
+{% block body %}
+<div class="container">  
+    {% csrf_token %}
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">      
+        <a class="navbar-brand" style="color:blue;" href="{% url 'home' %}">Home</a>
+        <a class="navbar-brand" style="color:blue;" href="#">Logs</a>
+        <a class="navbar-brand" style="color:blue;" href="{% url 'logout' %}">Logout</a>
+      </nav>
+</div>   
+
+<div class="container">
+    {% if logs %}
+    <h3>Logs do sistema</h3>
+    <table class="table table-sm"> 
+        <thead class="thead-light">
+          <caption style="caption-side: top;">Lista de logs do usuário</caption>
+          <tr>
+            <th scope="col">Informações</th>
+            <th scope="col">Tempo de resposta da API (segundos)</th>
+            <th scope="col">Data</th>
+          </tr>
+        </thead>
+        <tbody> 
+          {% for log in logs %}
+          <tr>
+              <td > {{ log.logdescription }} </td>
+              <td > {{ log.timeresponse|slice:":-12" }} </td>
+              <td > {{ log.created }} </td>
+         </tr>
+         {% endfor %}
+        </tbody>  
+      </table> 
+    {% endif %}   
+</div>
+{% endblock %}

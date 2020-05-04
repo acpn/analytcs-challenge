@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Login {% endblock %}
+
+{% block body %}
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card card-body text-center mt-5">
+                        <span>
+                            <img src="{% static 'icherry.jpg' %}"  alt="i-cherry">
+                            <p class="mv0 lh-copy gray6 tc mh6-l">Faça login no desafio i-cherry</p>
+                        </span>                       
+                        <form id="loan-form">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" name="email" class="form-control" id="email" placeholder="E-mail">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                                </div>
+                            </div>
+                            {% if messages %}                                    
+                                    {% for msg in messages %}
+                                        {% if msg.tags == 'error' %}
+                                            <div class="alert alert-{% if msg.tags == 'error' %}danger{% else %}{{ msg.tags }}{% endif %}" role="alert">
+                                                {{ msg.message }} 
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}                                
+                            {% endif %}
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-success btn-block" value="Sign in" />
+                            </div>
+                            <p class="mv0 lh-copy gray6 tc mh6-l"> Novo no desafio i-cherry?
+                                <a href="{% url 'signup' %}" class="link link-underline-dark primary5 hover-primary7">
+                                    Crie uma conta.
+                                </a> 
+                            </p>
+                        </form>            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

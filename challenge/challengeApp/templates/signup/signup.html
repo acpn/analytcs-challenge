@@ -1,0 +1,76 @@
+<!-- Using inheritance to avoid code duplication
+     base.html it's a base html template to use in all pages 
+-->
+{% extends 'base.html' %}
+
+{% load static %}
+    
+{% block title %} Signup {% endblock %}
+
+{% block body %}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card card-body text-center mt-5">
+                        <form id="userform" enctype="multipart/form-data"> 
+                            <p>Junte-se ao desafio i-cherry</p>
+                            <div class="col-md-0">
+                                <span>
+                                    <img src="{% static 'icherry.jpg' %}" alt="i-cherry">
+                                </span>
+                            </div>
+                            <h1>Crie sua conta</h1>
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="fullname" id="fullname" placeholder="Nome completo" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <select class="form-control" id="gender" name="gender" id="gender">
+                                        <option>Gênero</option>
+                                        <option>Feminino</option>
+                                        <option>Masculino</option>                
+                                    </select>                                      
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="E-mail" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" name="password" id="password" required placeholder="Senha">
+                                        <small class="note">Recomenda-se 
+                                            <span data-more-than-n-chars="">ter 15 caracteres </span>
+                                             ou 
+                                            <span data-min-chars="" class="text-green">ao menos 8 caracteres</span>
+                                            <span data-number-requirement="" class="">incluindo um número</span> 
+                                            <span data-letter-requirement="" class="text-green">e uma letra minúscula</span>. 
+                                            <a href="https://help.github.com/articles/creating-a-strong-password" class="tooltipped tooltipped-s" aria-label="Learn more about strong passwords">Mais informações</a>.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="form-group"> 
+                                    <input type="file" name="document" class="form-control" id="inputfile" required>                      
+                                </div>
+                                {% if messages %}                                    
+                                    {% for msg in messages %}
+                                     <div class="alert alert-{% if msg.tags == 'error' %}danger{% else %}{{ msg.tags }}{% endif %}" role="alert">
+                                        {{ msg.message }} 
+                                    </div>   
+                                    {% endfor %}                                
+                                {% endif %}
+                                <input type="submit" class="btn btn-success btn-block" value="Criar usuário" />                          
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}
