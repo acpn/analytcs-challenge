@@ -27,6 +27,10 @@
     - Consulta ao Analytis que retornará os dados de Contas/Propriedades e Vistas e salvará na base de dados.
     - Página de logs
 
+## Manual do usuário
+
+* No diretório user_guide há um arquivo com explicações e imagens de como utilizar o sistema.
+
 ## Tecnologias utilizadas
 
 * Todo o desenvolvimento doi realizado utilizando python.
