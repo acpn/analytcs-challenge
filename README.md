@@ -2,15 +2,16 @@
 
 ## Requisitos
 
-* Docker: 
+* Docker containers
+    - Windows: https://docs.docker.com/docker-for-windows/install/
+    - Ubuntu: https://docs.docker.com/engine/install/ubuntu/ 
 
 ## Tecnologias utilizadas
 
 * Todo o desenvolvimento doi realizado utilizando python.
-
+    - https://www.python.org/
 * Para o frontend foi utilizado o framework Django
-
-https://www.djangoproject.com/
+    - https://www.djangoproject.com/
 
 * Para os componentes de UI foi utilizado bootstrap CDN
     - https://www.bootstrapcdn.com/
