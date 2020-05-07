@@ -1,57 +1,56 @@
-# i-cherry Analytics Challenge
+# Django + Google Analytics API
+This project it's useful to integrate with Google Analytics and retrieve informations from user with a friendly interface.
 
-## Requisitos
+## Requirements
 
 * Docker containers
     - Windows: https://docs.docker.com/docker-for-windows/install/
     - Ubuntu: https://docs.docker.com/engine/install/ubuntu/ 
 
-* Credenciais do Google para utilizar API do Analytics, siga com atenção os passos descritos no tutorial abaixo.
+* Credentials to use Google Analytics API, pay attention to the described steps.
     - https://developers.google.com/analytics/devguides/reporting/core/v4/quickstart/service-py
 
-* Além das credencias descritas acima é necessário que a conta cadastrada tenha pelo menos uma propriedade e uma view.
+* Besides credentials, it's necessary which the account has almost one property and one view.
 
-## Instalação
+## How to use
 
-* No diretório raíz do projeto executar:
+* In the root project directory run:
     - docker-compose up --build
-    - Após o término da execução abra o navegador de sua preferência e digite o endereço:
+    - After finish the build process open's your browser and type the url below:
         - http://localhost:8000/
 
-## Funções do sistema
+## System functions
 
-* Há quatro funções principais no sistema:
-    - Cadastro de usuários
-    - Login (página inicial)
-    - Página Home com dados de Contas/Propriedades e Vistas
-    - Consulta ao Analytis que retornará os dados de Contas/Propriedades e Vistas e salvará na base de dados.
-    - Página de logs
+* The system has 5 mainly functions:
+    - User signup
+    - Login
+    - Home page with data from accounts, properties and views
+    - Google Analytics API request to retrieve data from account, properties and views
+    - Log page which contains data from api request/response time, error logs and others
 
-## Manual do usuário
+## User guide
 
-* No diretório user_guide há um arquivo com explicações e imagens de como utilizar o sistema.
+* In user_guide directory has a file with explanations and images about how to use the system.
 
-## Tecnologias utilizadas
+## Techonologies
 
-* Todo o desenvolvimento doi realizado utilizando python.
+* Main developments was in Python.
     - https://www.python.org/
 
-* Para o frontend foi utilizado o framework Django
+* Frontend was made in Django framework
     - https://www.djangoproject.com/
 
-* A base de dados utilizada foi o Postgres
+* Database was postgres
     - https://www.postgresql.org/
 
-* Para os componentes de UI foi utilizado bootstrap CDN
+* To UI was utilized bootstrap CDN
     - https://www.bootstrapcdn.com/
 
-* Para garantir a consistência em diferentes plataformas foi utilizado Docker containers
-    - https://www.docker.com/resources/what-container
-
-* Para controles de componentes no HTML foi utilizado JavaScript
+* To control DOM components was used JavaScript
     - https://www.javascript.com/
 
-## Desenvolvimento da API
+* To create and prepare the environment
+    - https://www.docker.com/resources/what-container
 
-* Para o desenvolvimento da API foi utilizada a biblioteca google-api-python-client do Google Analytics
+* API development
     - https://developers.google.com/analytics/devguides/reporting/core/v4/quickstart/service-py
